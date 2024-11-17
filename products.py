@@ -71,7 +71,7 @@ class Product:
         if quantity < 0:
             raise ValueError("Quantity must be non-negative")
         if quantity > self.quantity:
-            raise ValueError("Not enough quantity available")
+            raise ValueError("Not enough quantity in stock")
         self.set_quantity(self.quantity - quantity)
         return self.price * quantity
 

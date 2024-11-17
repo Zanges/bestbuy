@@ -54,10 +54,11 @@ class Store:
             shop_product = self.products[self.products.index(product)] # just to ensure that the product is the same object in the store
             if not shop_product.is_active():
                 raise ValueError("Product is not active")
-            if shop_product.quantity < quantity:
-                raise ValueError("Not enough quantity of the product")
 
-            total_cost += shop_product.buy(quantity)
+            try:
+                total_cost += shop_product.buy(quantity)
+            except ValueError as e:
+                print(f"Error buying {shop_product}: {e}")
 
         return total_cost
 
